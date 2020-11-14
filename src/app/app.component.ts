@@ -31,7 +31,10 @@ export class AppComponent {
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.dataset = [];
-      const rows = (fileReader.result as string).split('\n');
+      const rows = (fileReader.result as string)
+        .split('\n')
+        .map(val => val.trim())
+        .filter(val => val);
       if (!rows[0] || rows[0].split(';').length !== 7) {
         throw new Error('Invalid columns length');
       }

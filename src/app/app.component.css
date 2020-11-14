@@ -2,12 +2,17 @@
   display: flex;
   flex-wrap: nowrap;
   height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 .container > * {
   flex: 1 1 auto;
+  overflow: hidden;
 }
 
-.data-table {
+.container > .data-table {
   width: 30%;
+  height: 100%;
+  overflow: auto;
 }
