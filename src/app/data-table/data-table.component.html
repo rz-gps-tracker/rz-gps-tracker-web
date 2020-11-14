@@ -1,0 +1,24 @@
+<table>
+  <thead>
+  <tr>
+    <th>Czas</th>
+    <th>Lat</th>
+    <th>Lon</th>
+    <th>Alt</th>
+    <th>Sv</th>
+    <th>Fix</th>
+    <th>V</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of dataset">
+    <td>{{row.time | date: 'H:mm:ss.SSS'}}</td>
+    <td>{{row.latitude}}</td>
+    <td>{{row.longitude}}</td>
+    <td>{{row.altitude}}</td>
+    <td>{{row.sv}}</td>
+    <td>{{row.fix}}</td>
+    <td>{{row.velocity}}</td>
+  </tr>
+  </tbody>
+</table>
