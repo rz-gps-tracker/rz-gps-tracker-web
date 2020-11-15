@@ -26,6 +26,7 @@
     "ngx-file-drop": "^10.1.1",
     "ol": "^6.4.3",
     "rxjs": "~6.5.4",
+    "three": "^0.122.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
@@ -34,9 +35,9 @@
     "@angular/cli": "~9.0.6",
     "@angular/compiler-cli": "~9.0.6",
     "@angular/language-service": "~9.0.6",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.19.4",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",

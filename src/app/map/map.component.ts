@@ -47,4 +47,9 @@ export class MapComponent implements OnInit {
     view.setZoom(2);
   }
 
+  zoomToBounds(lat1: number, lon1: number, lat2: number, lon2: number) {
+    const extent = [lon1, lat1, lon2, lat2];
+    this.map.getView().fit(extent, this.map.getSize());
+  }
+
 }

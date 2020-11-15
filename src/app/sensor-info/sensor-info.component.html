@@ -1,0 +1,46 @@
+<div class="sensors">
+  <!--<dl class="sensor">
+    <dt>GPS</dt>
+    <dd>{{gps.lat}} {{gps.lon}}</dd>
+  </dl>
+  <dl class="sensor">
+    <dt>Accel</dt>
+    <dd>{{accel.x}} {{accel.y}} {{accel.z}}</dd>
+  </dl>
+  <dl class="sensor">
+    <dt>Orient</dt>
+    <dd>{{accel.x}} {{accel.y}} {{accel.z}}</dd>
+  </dl>
+  <dl class="sensor">
+    <dt>Gyro</dt>
+    <dd>{{gyroscope.x}} {{gyroscope.y}} {{gyroscope.z}}</dd>
+  </dl>-->
+  <dl class="sensor">
+    <dt>Czas</dt>
+    <dt>{{data?.time | date: 'H:mm:ss'}}</dt>
+  </dl>
+  <dl class="sensor">
+    <dt>Lat</dt>
+    <dd>{{data?.latitude}}</dd>
+  </dl>
+  <dl class="sensor">
+    <dt>Lon</dt>
+    <dd>{{data?.longitude}}</dd>
+  </dl>
+  <dl class="sensor">
+    <dt>Ele</dt>
+    <dd>{{data?.altitude}}</dd>
+  </dl>
+  <dl class="sensor">
+    <dt>SV</dt>
+    <dd>{{data?.sv}}</dd>
+  </dl>
+  <dl class="sensor">
+    <dt>Fix</dt>
+    <dt>{{data?.fix ? '✔️' : '❌'}}</dt>
+  </dl>
+  <dl class="sensor">
+    <dt>V</dt>
+    <dt>{{data?.velocity}}</dt>
+  </dl>
+</div>

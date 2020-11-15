@@ -10,5 +10,7 @@
     <orderEntry type="library" name="@types/google-maps" level="application" />
     <orderEntry type="library" name="@types/googlemaps" level="application" />
     <orderEntry type="library" name="@types/openlayers" level="application" />
+    <orderEntry type="library" name="@types/w3c-generic-sensor" level="application" />
+    <orderEntry type="library" name="@types/w3c-screen-orientation" level="application" />
   </component>
 </module>

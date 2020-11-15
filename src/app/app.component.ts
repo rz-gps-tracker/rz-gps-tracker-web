@@ -1,5 +1,7 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, ViewChild} from '@angular/core';
 import {Dataset} from './dataset.model';
+import {DataParser} from './data-table/data-parser.service';
+import {MapComponent} from "./map/map.component";
 
 @Component({
   selector: 'app-root',
@@ -9,6 +11,9 @@ import {Dataset} from './dataset.model';
 export class AppComponent {
 
   dataset: Dataset[];
+  currentData: Dataset;
+
+  @ViewChild(MapComponent, {static: true}) mapComponent: MapComponent;
 
   @HostListener('window:dragover', ['$event'])
   onDragOver($event: DragEvent) {
@@ -28,42 +33,15 @@ export class AppComponent {
   }
 
   private parseCsvFile(file: File) {
-    const fileReader = new FileReader();
-    fileReader.onloadend = () => {
-      this.dataset = [];
-      const rows = (fileReader.result as string)
-        .split('\n')
-        .map(val => val.trim())
-        .filter(val => val);
-      if (!rows[0] || rows[0].split(';').length !== 7) {
-        throw new Error('Invalid columns length');
-      }
-      let prevDate = null;
-      rows.shift();
-      for (const row of rows) {
-        const cells = row.split(';').map(val => val.trim());
-        const dateParts = cells[0].split(/\:|\./);
-        const date = new Date();
-        date.setHours.call(date, ...dateParts);
-        if (prevDate != null && date < prevDate) {
-          date.setDate(date.getDate() + 1);
-        }
-        prevDate = date;
-        this.dataset.push({
-          time: date,
-          latitude: parseFloat(cells[1]),
-          longitude: parseFloat(cells[2]),
-          altitude: parseFloat(cells[3]),
-          sv: parseInt(cells[4], 10),
-          fix: cells[5] === '1',
-          velocity: parseFloat(cells[6])
-        });
-      }
-    };
-    fileReader.onerror = () => {
-      alert('Could not load file: ' + fileReader.error);
-    };
-    fileReader.readAsText(file);
+    DataParser.parseCsv(file).then(dataset => {
+      this.dataset = dataset;
+      this.currentData = dataset[0];
+      const lat1 = Math.min(...dataset.map(x => x.latitude));
+      const lon1 = Math.min(...dataset.map(x => x.longitude));
+      const lat2 = Math.max(...dataset.map(x => x.longitude));
+      const lon2 = Math.max(...dataset.map(x => x.longitude));
+      this.mapComponent.zoomToBounds(lat1, lon1, lat2, lon2);
+    }, error => alert(error));
   }
 
 }
